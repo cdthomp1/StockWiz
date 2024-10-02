@@ -2,22 +2,52 @@
 using StockWiz.Features.Common.Models;
 using StockWiz.Features.Get.Services.Interfaces;
 using StockWiz.InventoryDbContext;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
-namespace StockWiz.Features.Get.Services;
-
-public class InventoryGetService(InventoryContext context) : IInventoryGetService
+namespace StockWiz.Features.Get.Services
 {
-    // Method to get all items from the database
-    public async Task<List<Item>> GetAllItems()
+    public class InventoryGetService : IInventoryGetService
     {
-        return await context.Items.ToListAsync(); // Fetches all items from the database
-    }
+        private readonly InventoryContext _context;
 
-    // Method to get a specific item by its ID
-    public async Task<Item> GetItemById(int id)
-    {
-        return await context.Items.FindAsync(id); // Fetches item by ID, returns null if not found
+        public InventoryGetService(InventoryContext context)
+        {
+            _context = context;
+        }
+
+        // Get all items
+        public async Task<List<Item>> GetAllItems()
+        {
+            return await _context.Items.ToListAsync();
+        }
+
+        // Get item by ID
+        public async Task<Item> GetItemById(int id)
+        {
+            return await _context.Items.FindAsync(id);
+        }
+
+        // Get all grocery items
+        public async Task<List<GroceryItem>> GetGroceryItems()
+        {
+            return await _context.GroceryItems.ToListAsync();
+        }
+
+        // Get grocery item by ID
+        public async Task<GroceryItem> GetGroceryItemById(int id)
+        {
+            return await _context.GroceryItems.FindAsync(id);
+        }
+
+        // Get all electronic items
+        public async Task<List<ElectronicItem>> GetElectronicItems()
+        {
+            return await _context.ElectronicItems.ToListAsync();
+        }
+
+        // Get electronic item by ID
+        public async Task<ElectronicItem> GetElectronicItemById(int id)
+        {
+            return await _context.ElectronicItems.FindAsync(id);
+        }
     }
 }
