@@ -1,0 +1,10 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/StockWiz/bin/Debug/net8.0
+/StockWiz/obj
+/StockWiz/appsettings.Development.json
+*.json
+/StockWiz/StockWiz.csproj.user
